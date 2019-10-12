@@ -61,6 +61,7 @@ const App = props => {
     const winners = [];
     //jos annettu ääniä
     if (maxVote) {
+      //käydän läpi anekdoottien määrä, verrataan pisteisiin ja maksimiääneen, jos sama tallennetaan i voittaja arrayhin
       for (let i = 0; i < props.anecdotes.length; i++) {
         const anecdote = points[i];
         if (anecdote === maxVote) {
