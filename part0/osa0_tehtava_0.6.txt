@@ -1,0 +1,15 @@
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note over selain:
+Selain renderöi DOMiin spa.js tiedoston
+mukaisesti uuden lisätyn muistiinpanon (huolimatta
+palvelimelta saadusta vastauksesta - tämä ei
+tietenkään oikeassa elämässä hyvä käytäntö)
+end note
+palvelin->selain: Palvelin vastaa {"message":"note created"}, status 201 created
+
+note over selain:
+Selain saa vastauksen 201 palvelimelta ja 
+tulostaa spa.js tiedoston avulla selaimen konsoliin
+console.log() komennon avulla 
+vastauksen sisällön ("note created")
+end note

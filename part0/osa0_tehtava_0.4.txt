@@ -1,3 +1,5 @@
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+palvelin->selain: Palvelin vastaa, status 302 found (uudelleenohjaus)
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
 palvelin-->selain: HTML-koodi
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
