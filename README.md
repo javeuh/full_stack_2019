@@ -1,8 +1,8 @@
 # full_stack_2019 Tehtävät
-Kurssisivusto https://fullstackopen.com/
+Kurssisivusto https://fullstackopen.com/ <br>
 
-Toteutustapa: Avoin yliopisto
-Opiskelijanumero: 015103277
+Toteutustapa: Avoin yliopisto <br>
+Opiskelijanumero: 015103277 <br>
 
-Jani Veihtola
+Jani Veihtola <br>
 jani.veihtola@gmail.com
