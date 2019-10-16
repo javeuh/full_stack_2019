@@ -3,7 +3,7 @@ import Total from './course-total-component'
 import Header from './course-header-component'
 import Part from './course-part-component'
 
-const Course = ({courses}) => (
+const Courses = ({courses}) => (
 
   courses.map((course, i) =>{
     return (
@@ -16,4 +16,4 @@ const Course = ({courses}) => (
   })
 )
 
-export default Course;
+export default Courses;
