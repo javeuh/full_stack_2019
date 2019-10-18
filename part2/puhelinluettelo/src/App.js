@@ -11,16 +11,23 @@ const Person = ({ person, number }) => {
 };
 
 const App = () => {
+    const emptyPerson = {
+        name: "",
+        number: ""
+    };
+
     const [persons, setPersons] = useState([
         { name: "Arto Hellas", number: "092-999-222" }
     ]);
-    const [newPerson, setNewPerson] = useState({
-        name: "",
-        number: ""
-    });
+    const [newPerson, setNewPerson] = useState(emptyPerson);
 
     const personIsFound = personName =>
         persons.find(person => person.name === personName);
+
+    const insertNew = () => {
+        setPersons(persons.concat(newPerson));
+        setNewPerson(emptyPerson);
+    };
 
     const handleChange = event => {
         const eventValue = event.target.value;
@@ -29,11 +36,12 @@ const App = () => {
         personCopy[eventName] = eventValue;
         setNewPerson(personCopy);
     };
+
     const addNewContact = event => {
         event.preventDefault();
         !!personIsFound(newPerson.name)
             ? alert(`${newPerson.name} is already added to phonebook`)
-            : setPersons(persons.concat(newPerson));
+            : insertNew();
     };
 
     const contactRows = () =>
