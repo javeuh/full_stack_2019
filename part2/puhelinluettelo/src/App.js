@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Filter from "./components/filter-component";
 import NewContactForm from "./components/new-contact-form-component";
 import Person from "./components/person-component";
@@ -9,16 +10,15 @@ const App = () => {
         name: "",
         number: ""
     };
-
-    //dummy data
-    const [persons, setPersons] = useState([
-        { name: "Arto Hellas", number: "092-999-222" },
-        { name: "Jani Kis", number: "092-999-222" },
-        { name: "Erkki Kovero", number: "092-999-222" },
-        { name: "Salla Markku", number: "092-999-222" }
-    ]);
+    const [persons, setPersons] = useState([]);
     const [newPerson, setNewPerson] = useState(emptyPerson);
     const [searchTerm, setSearchTerm] = useState("");
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/persons").then(response => {
+            setPersons(response.data);
+        });
+    }, []);
 
     const personIsFound = personName =>
         persons.find(person => person.name === personName);
