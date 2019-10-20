@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Person = ({ person, number }) => {
+    console.log(person, number);
     return (
         <li>
             <p>
@@ -17,9 +18,13 @@ const App = () => {
     };
 
     const [persons, setPersons] = useState([
-        { name: "Arto Hellas", number: "092-999-222" }
+        { name: "Arto Hellas", number: "092-999-222" },
+        { name: "Jani Kis", number: "092-999-222" },
+        { name: "Erkki Kovero", number: "092-999-222" },
+        { name: "Salla Markku", number: "092-999-222" }
     ]);
     const [newPerson, setNewPerson] = useState(emptyPerson);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const personIsFound = personName =>
         persons.find(person => person.name === personName);
@@ -37,6 +42,11 @@ const App = () => {
         setNewPerson(personCopy);
     };
 
+    const handleSearch = event => {
+        const searchInput = event.target.value;
+        setSearchTerm(searchInput);
+    };
+
     const addNewContact = event => {
         event.preventDefault();
         !!personIsFound(newPerson.name)
@@ -44,14 +54,32 @@ const App = () => {
             : insertNew();
     };
 
-    const contactRows = () =>
-        persons.map((person, index) => (
-            <Person key={index} person={person.name} number={person.number} />
+    const contactRows = () => {
+        const filteredPersons = persons.filter(person =>
+            person.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        return filteredPersons.map((filteredPerson, index) => (
+            <Person
+                key={index}
+                person={filteredPerson.name}
+                number={filteredPerson.number}
+            />
         ));
+    };
 
     return (
         <div>
             <h2>Phonebook</h2>
+            <h3>Filter numbers</h3>
+            <div>
+                Search contacts:{" "}
+                <input
+                    name="name"
+                    onChange={handleSearch}
+                    placeholder="Search with name"
+                />
+            </div>
+            <h3>Add new contact</h3>
             <form onSubmit={addNewContact}>
                 <div>
                     name:{" "}
@@ -75,7 +103,7 @@ const App = () => {
                     <button type="submit">add</button>
                 </div>
             </form>
-            <h2>Numbers</h2>
+            <h3>Numbers</h3>
             <ul>{contactRows()}</ul>
         </div>
     );
