@@ -10,6 +10,7 @@ const App = () => {
         number: ""
     };
 
+    //dummy data
     const [persons, setPersons] = useState([
         { name: "Arto Hellas", number: "092-999-222" },
         { name: "Jani Kis", number: "092-999-222" },
