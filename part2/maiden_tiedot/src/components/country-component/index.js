@@ -1,4 +1,5 @@
 import React from "react";
+import Weather from "../weather-component";
 
 const Country = ({ country }) => {
     const imgAlt = "Flag of " + country.name;
@@ -18,6 +19,7 @@ const Country = ({ country }) => {
                 alt={imgAlt}
                 style={{ height: 8 + "rem" }}
             />
+            <Weather city={country.capital} />
         </div>
     );
 };
