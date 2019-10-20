@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+require("dotenv").config();
 
 const Weather = ({ city }) => {
     const [weather, setWeather] = useState(false);
-    const apiKey = "533234c02d71f787a70b6410fc0905bd";
+    console.log(process.env);
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+    console.log(apiKey);
     const url =
         "http://api.weatherstack.com/current?access_key=" +
         apiKey +
