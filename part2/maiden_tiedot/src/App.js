@@ -23,6 +23,11 @@ function App() {
                             { errorMessage: "Too many search results!" }
                         ]);
                     }
+                })
+                .catch(e => {
+                    setCountries([
+                        { errorMessage: "Try different search term!" }
+                    ]);
                 });
         } else {
             setCountries([{ errorMessage: "Search for something..." }]);
