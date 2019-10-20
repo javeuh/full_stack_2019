@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-
-const Person = ({ person, number }) => {
-    console.log(person, number);
-    return (
-        <li>
-            <p>
-                {person} {number}
-            </p>
-        </li>
-    );
-};
+import Filter from "./components/filter-component";
+import NewContactForm from "./components/new-contact-form-component";
+import Person from "./components/person-component";
+import ContactList from "./components/contact-list-component";
 
 const App = () => {
     const emptyPerson = {
@@ -70,41 +63,14 @@ const App = () => {
     return (
         <div>
             <h2>Phonebook</h2>
-            <h3>Filter numbers</h3>
-            <div>
-                Search contacts:{" "}
-                <input
-                    name="name"
-                    onChange={handleSearch}
-                    placeholder="Search with name"
-                />
-            </div>
-            <h3>Add new contact</h3>
-            <form onSubmit={addNewContact}>
-                <div>
-                    name:{" "}
-                    <input
-                        name="name"
-                        value={newPerson.name}
-                        onChange={handleChange}
-                        placeholder="Enter new name"
-                    />
-                </div>
-                <div>
-                    number:{" "}
-                    <input
-                        name="number"
-                        value={newPerson.number}
-                        onChange={handleChange}
-                        placeholder="Enter new number"
-                    />
-                </div>
-                <div>
-                    <button type="submit">add</button>
-                </div>
-            </form>
-            <h3>Numbers</h3>
-            <ul>{contactRows()}</ul>
+            <Filter handleSearch={handleSearch} />
+            <NewContactForm
+                onSubmit={addNewContact}
+                personName={newPerson.name}
+                personNumber={newPerson.number}
+                onChange={handleChange}
+            />
+            <ContactList contactRows={contactRows} />
         </div>
     );
 };
