@@ -15,6 +15,7 @@ const Weather = ({ city }) => {
             .then(response => {
                 setWeather(response.data);
             })
+            //asetetaan takaisin alkutilaan jos maa vaihtuu
             .then(setWeather(false));
     }, [city, url]);
     if (weather) {
