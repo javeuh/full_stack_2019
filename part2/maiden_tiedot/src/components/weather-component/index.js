@@ -4,9 +4,7 @@ require("dotenv").config();
 
 const Weather = ({ city }) => {
     const [weather, setWeather] = useState(false);
-    console.log(process.env);
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-    console.log(apiKey);
     const url =
         "http://api.weatherstack.com/current?access_key=" +
         apiKey +
@@ -17,6 +15,10 @@ const Weather = ({ city }) => {
             .get(url)
             .then(response => {
                 setWeather(response.data);
+            })
+            .catch(error => {
+                // handle error
+                console.log(error);
             })
             //asetetaan takaisin alkutilaan jos maa vaihtuu
             .then(setWeather(false));
