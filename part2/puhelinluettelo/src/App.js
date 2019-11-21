@@ -60,7 +60,15 @@ const App = () => {
         ) {
             personService
                 .destroy(filtteredPerson.id)
-                .then(() => getNewPersons());
+                .then(response => {
+                    getNewPersons();
+                })
+                .catch(err => {
+                    alert(
+                        `${filtteredPerson.name} is not found or may already be deleted! error: ${err}`
+                    );
+                    getNewPersons();
+                });
         }
     };
 

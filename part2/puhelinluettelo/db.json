@@ -1,29 +1,19 @@
 {
   "persons": [
     {
-      "name": "Kati manner",
-      "number": "123456",
-      "id": 6
+      "name": "asd",
+      "number": "213123",
+      "id": 1
     },
     {
-      "name": "Jani",
-      "number": "243423",
-      "id": 7
+      "name": "123213",
+      "number": "123213",
+      "id": 2
     },
     {
-      "name": "images",
-      "number": "324234",
-      "id": 8
-    },
-    {
-      "name": "reetta ",
-      "number": "525346 6 56",
-      "id": 9
-    },
-    {
-      "name": "345345",
-      "number": "345345",
-      "id": 11
+      "name": "sdfsdfdsf",
+      "number": "234234",
+      "id": 5
     }
   ]
 }
