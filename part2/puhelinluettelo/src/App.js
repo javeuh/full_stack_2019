@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Filter from "./components/filter-component";
 import NewContactForm from "./components/new-contact-form-component";
 import Person from "./components/person-component";
 import ContactList from "./components/contact-list-component";
+import personService from "./services/persons";
 
 const App = () => {
     const emptyPerson = {
@@ -14,19 +14,16 @@ const App = () => {
     const [newPerson, setNewPerson] = useState(emptyPerson);
     const [searchTerm, setSearchTerm] = useState("");
 
-    useEffect(() => {
-        axios.get("http://localhost:3001/persons").then(response => {
-            setPersons(response.data);
+    const getNewPersons = () => {
+        personService.getAll().then(initialPersons => {
+            setPersons(initialPersons);
         });
-    }, []);
+    };
+
+    useEffect(getNewPersons, []);
 
     const personIsFound = personName =>
         persons.find(person => person.name === personName);
-
-    const insertNew = () => {
-        setPersons(persons.concat(newPerson));
-        setNewPerson(emptyPerson);
-    };
 
     const handleChange = event => {
         const eventValue = event.target.value;
@@ -48,6 +45,25 @@ const App = () => {
             : insertNew();
     };
 
+    const insertNew = () => {
+        personService.create(newPerson).then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson));
+        });
+        setNewPerson(emptyPerson);
+    };
+
+    const destroy = filtteredPerson => {
+        if (
+            window.confirm(
+                `Are you sure you want to delete ${filtteredPerson.name}`
+            )
+        ) {
+            personService
+                .destroy(filtteredPerson.id)
+                .then(() => getNewPersons());
+        }
+    };
+
     const contactRows = () => {
         const filteredPersons = persons.filter(person =>
             person.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -57,6 +73,7 @@ const App = () => {
                 key={index}
                 person={filteredPerson.name}
                 number={filteredPerson.number}
+                destroy={() => destroy(filteredPerson)}
             />
         ));
     };
